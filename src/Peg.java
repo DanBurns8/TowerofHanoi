@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Peg {
     private int pegNum;
     private int numDiscs;  // The total number of discs in the current game.
@@ -8,6 +10,8 @@ public class Peg {
     public Peg(int peg, int num) {
         pegNum=peg;
         numDiscs=num;
+        discs=new int[num];
+        count=0;
     }
 
     public int getPegNum() {
@@ -20,7 +24,7 @@ public class Peg {
     }
     public boolean addDisc(int whichOne) {
         if(count==0||whichOne<discs[count-1]){
-            discs[count-1]=whichOne;
+            discs[count]=whichOne;
             count++;
             return true;
         }
@@ -28,7 +32,9 @@ public class Peg {
         return false;
     }
     public int popDisc() {
-
+        int count1=discs[count-1];
+        discs[count-1]=0;
+        return count1;
         // TODO remove the top disc from the peg.  Return its value.
     }
     public boolean moveTopDisc(Peg newPeg) {
