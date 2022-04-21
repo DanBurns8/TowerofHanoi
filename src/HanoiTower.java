@@ -4,18 +4,34 @@ public class HanoiTower {
     private Peg peg3;
     private int numDiscs;
 
-    public HanoiTower(int num, Peg p1, Peg p2, Peg p3) {
+    public String toString() {
+        return "";
+    }
+
+    public HanoiTower(int num) {
         numDiscs=num;
-        peg1=p1;
-        peg2=p2;
-        peg3=p3;
+        peg1 = new Peg(1, num);
+        for (int i = num; i > 0; i--) {
+            peg1.addDisc(i);
+        }
+        peg2 = new Peg(2, num);
+        peg3 = new Peg(3, num);
     }
     public void solveTower() {
         moveTower(peg1, peg3, peg2, numDiscs);
     }
 
     private void moveTower(Peg startPeg, Peg endPeg, Peg extraPeg, int numtoMove) {
-        if(numtoMove==1) startPeg.moveTopDisc(endPeg);
+        if (numtoMove < 0) return;
+        if (numtoMove == 0) {
+            startPeg.moveTopDisc(extraPeg);
+            return;
+        }
+        if(numtoMove==1){
+            startPeg.moveTopDisc(endPeg);
+            return;
+        }
+
         moveTower(startPeg, extraPeg, endPeg, numtoMove-1);
         startPeg.moveTopDisc(endPeg);
         moveTower(extraPeg,endPeg,startPeg,numtoMove-1);
@@ -29,3 +45,34 @@ public class HanoiTower {
     }
 
 }
+//        Moving disc 1 from peg 1 to peg 3
+//        Moving disc 2 from peg 1 to peg 2
+//        Moving disc 1 from peg 3 to peg 2
+//        Moving disc 3 from peg 1 to peg 3
+//        Moving disc 1 from peg 2 to peg 1
+//        Moving disc 2 from peg 2 to peg 3
+//        Moving disc 1 from peg 1 to peg 3
+//        Moving disc 4 from peg 1 to peg 2
+//        Moving disc 1 from peg 3 to peg 2
+//        Moving disc 2 from peg 3 to peg 1
+//        Moving disc 1 from peg 2 to peg 1
+//        Moving disc 3 from peg 3 to peg 2
+//        Moving disc 1 from peg 1 to peg 3
+//        Moving disc 2 from peg 1 to peg 2
+//        Moving disc 1 from peg 3 to peg 2
+//        Moving disc 5 from peg 1 to peg 3
+//        Moving disc 1 from peg 2 to peg 1
+//        Moving disc 2 from peg 2 to peg 3
+//        Moving disc 1 from peg 1 to peg 3
+//        Moving disc 3 from peg 2 to peg 1
+//        Moving disc 1 from peg 3 to peg 2
+//        Moving disc 2 from peg 3 to peg 1
+//        Moving disc 1 from peg 2 to peg 1
+//        Moving disc 4 from peg 2 to peg 3
+//        Moving disc 1 from peg 1 to peg 3
+//        Moving disc 2 from peg 1 to peg 2
+//        Moving disc 1 from peg 3 to peg 2
+//        Moving disc 3 from peg 1 to peg 3
+//        Moving disc 1 from peg 2 to peg 1
+//        Moving disc 2 from peg 2 to peg 3
+//        Moving disc 1 from peg 1 to peg 3

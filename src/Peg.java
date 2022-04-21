@@ -19,7 +19,10 @@ public class Peg {
     }
 
     public String toString() {
-        String s = "Peg " + pegNum;
+        String s = "Peg " + pegNum + ": ";
+        for (int i = 0; i < count; i ++) {
+            s+= discs[i];
+        }
         return s;
     }
     public boolean addDisc(int whichOne) {
@@ -32,15 +35,15 @@ public class Peg {
         return false;
     }
     public int popDisc() {
-        int count1=discs[count-1];
-        discs[count-1]=0;
+        count--;
+        int count1=discs[count];
+        discs[count]=0;
         return count1;
         // TODO remove the top disc from the peg.  Return its value.
     }
     public boolean moveTopDisc(Peg newPeg) {
         int disc = popDisc();
-        if (newPeg.addDisc(disc))
-        {
+        if (newPeg.addDisc(disc)){
             System.out.println("Moving disc " + disc + " from peg " + pegNum + " to peg " + newPeg.getPegNum());
             return true;
         }
